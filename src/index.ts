@@ -9,11 +9,31 @@
 // }
 
 class User {
+  private _courseCount = 1;
+
   readonly city: string = "Caracas";
   constructor(
     public email: string,
-    public name: string // private userId: number
+    public name: string // private userId: number,
   ) {}
+  private deleteToken() {
+    console.log("Token deleted");
+  }
+
+  get getAppleEmail(): string {
+    return `apple${this.email}`;
+  }
+
+  get courseCount(): number {
+    return this._courseCount;
+  }
+
+  set courseCount(courseNum) {
+    if (courseNum >= 0) {
+      throw new Error("Course count should be more than 1");
+    }
+    this._courseCount = courseNum;
+  }
 }
 
 const samuel = new User("s@s.com", "Samuel");
@@ -21,3 +41,5 @@ const samuel = new User("s@s.com", "Samuel");
 // samuel.city = "Caracas";
 samuel.email = "sam@bg.com";
 // samuel.name;
+
+// samuel.deleteToken()
